@@ -235,9 +235,3 @@ class SuffixTree:
 
     def __str__(self):
         return "\n".join(map(str, self.edges.values()))
-
-
-s = "abcabxabcd$"
-tree = SuffixTree(s)
-tree.build_suffix_tree()
-# print("\n".join(tree.print_dfs(tree.root)))
