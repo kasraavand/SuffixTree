@@ -42,7 +42,6 @@ class SuffixTree:
         self._string = data
         self.lastNewNode = None
         self.activeNode = None
-        self.max_char = 256
         """activeEdge is represeted as input string character
           index (not the character itself)"""
         self.activeEdge = -1
@@ -186,37 +185,13 @@ class SuffixTree:
             elif (self.activeNode != self.root):  # APCFER2C2
                 self.activeNode = self.activeNode.suffixLink
 
-    def set_suffix_index_by_DFS(self, n, label_height):
-        if n is None:
-            return
-
-        if n.start != -1:  # A non-root node
-            # Print the label on edge from parent to current node
-            print(self._string[n.start: n.end + 1], end='')
-
-        leaf = 1
-        for i in range(self.max_char):
-            if n.children.get(chr(i)) is not None:
-                if leaf == 1 and n.start != -1:
-                    print(" [{}]\n".format(n.suffixIndex))
-
-                # Current node is not a leaf as it has outgoing
-                # edges from it.
-                leaf = 0
-                self.set_suffix_index_by_DFS(n.children[chr(i)],
-                                             label_height + self.edge_length(n.children[chr(i)]))
-
-        if leaf == 1:
-            n.suffixIndex = self.size - label_height
-            print(" [{}]".format(n.suffixIndex))
-
-    def print_dfs(self, current):
+    def walk_dfs(self, current):
         start, end = current.start, current.end
-        yield self._string[start: end]
+        yield self._string[start: end + 1]
 
         for node in current.children.values():
             if node:
-                yield from self.print_dfs(node)
+                yield from self.walk_dfs(node)
 
     def build_suffix_tree(self):
         self.size = len(self._string)
@@ -228,10 +203,10 @@ class SuffixTree:
         self.activeNode = self.root  # First activeNode will be root
         for i in range(self.size):
             self.extend_suffix_tree(i)
-        self.set_suffix_index_by_DFS(self.root, 0)
-
-        # Free the dynamically allocated memory
-        # self.free_suffix_tree_by_postorder(root)
 
     def __str__(self):
         return "\n".join(map(str, self.edges.values()))
+
+    def print_dfs(self):
+        for sub in self.walk_dfs(self.root):
+            print(sub)
