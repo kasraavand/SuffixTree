@@ -2,8 +2,9 @@
 
 This module is an optimized implementation of Ukkonen's suffix tree algorithm in python. In a near future it's going to have the most important text processing functionalities like:
 
+
 ### Search for strings:
-  - Check if a string ***P*** of length ***m*** is a substring in ***O(m)*** time.  
+  `✓` Check if a string ***P*** of length ***m*** is a substring in ***O(m)*** time.  
   - Find the first occurrence of the patterns ***P1,... ,Pq*** of total length ***m*** as substrings in ***O(m)*** time.
   - Find all ***z*** occurrences of the patterns ***P1,... ,Pq*** of total length ***m*** as substrings in ***O(m+z)*** time.
   - Search for a regular expression P in time expected sublinear in ***n***
