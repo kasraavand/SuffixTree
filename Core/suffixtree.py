@@ -1,5 +1,6 @@
 """An optimized implementation of Suffix-Tree."""
 
+# For more infor about the comments you can read http://web.stanford.edu/~mjkay/gusfield.pdf
 from operator import attrgetter
 
 leafEnd = -1

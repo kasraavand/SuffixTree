@@ -1,10 +1,13 @@
-from suffixtree import SuffixTree
+from Core.suffixtree import SuffixTree
+from Search.substringsearch import CheckSubString
 
-
-s = "abcabxabcd$"
+s = "abcabxabcd"
 tree = SuffixTree(s)
 tree.build_suffix_tree()
-# print("\n".join(tree.print_dfs(tree.root)))
+a = CheckSubString(tree, 'bcd')
+print(a.check())
+
+# tree.print_dfs()
 
 """
 output:
