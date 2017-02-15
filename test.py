@@ -4,7 +4,7 @@ from Search.substringsearch import CheckSubString
 s = "abcabxabcd$"
 tree = SuffixTree(s)
 tree.build_suffix_tree()
-a = CheckSubString(tree, 'bxa')
+a = CheckSubString(tree, 'ca')
 print(a.check())
 
 # tree.print_dfs()

@@ -16,10 +16,9 @@ class CheckSubString:
                 start, end = child.start, child.end
                 # If the edge is equal with sub-string returns the index
                 if self.tree._string[start: end + 1] == sub_string:
-                    return end - len(self.sub_string) + 1, 1
+                    return end - len(self.sub_string) + 1
                 # sub-string starts with the frist character of our edge but es not equal with it
                 # So call the travese for the rest of sub-string (from the lenght of previous edge)
-                print([sub_string, start, end])
                 return self.traverse(child, sub_string[end - start + 1:], start + len(sub_string))
             else:
                 # At this level there were no edge that sub-string starts with its leading character.
