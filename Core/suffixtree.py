@@ -188,7 +188,7 @@ class SuffixTree:
 
     def walk_dfs(self, current):
         start, end = current.start, current.end
-        yield self._string[start: end + 1]
+        yield self._string[start: end + 1], start, end
 
         for node in current.children.values():
             if node:
