@@ -1,11 +1,11 @@
-from Core.suffixtree import SuffixTree
-from Search.substringsearch import CheckSubString
+from SuffixTree.suffixtree import SuffixTree
+from SuffixTree.modules import CheckSubString
 
 s = "abcabxabcd$"
 tree = SuffixTree(s)
 tree.build_suffix_tree()
-a = CheckSubString(tree, 'ca')
-print(a.check())
+a = CheckSubString(tree, 'abc', find_all=True)
+print(list(a.check()))
 
 # tree.print_dfs()
 
@@ -33,5 +33,4 @@ abxabcd$ [2]
 d$ [8]
 d$ [9]
 xabcd$ [5]
- 
 """
