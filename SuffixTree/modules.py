@@ -6,12 +6,13 @@ class Base:
 
 
 class CheckSubString(Base):
-    def __init__(self, tree, sub_string, find_all=False):
+    def __init__(self, tree, sub_string, findall=False):
         super(CheckSubString, self).__init__(tree)
         self.sub_string = sub_string
         self.latest_index = 0
-        self.find_all = find_all
+        self.findall = findall
         self.continue_flag = False
+        self.sub_length = len(sub_string)
 
     def traverse(self, node, sub_string):
         if sub_string:
@@ -24,20 +25,18 @@ class CheckSubString(Base):
                 start, end = child.start, child.end
                 # If the edge is equal with sub-string returns the index
                 if self.main_string[start: end + 1].startswith(sub_string):
-                    self.latest_index = start - len(self.sub_string) + len(sub_string)
-                    if self.find_all:
-                        return self.find_all_match(child, sub_string)
-                    return self.latest_index
+                    if self.findall:
+                        return self.find_all_match(child, len(sub_string))
+                    return start - (self.sub_length - len(sub_string))
                 # sub-string starts with the frist character of our edge but is not equal with it
                 # So call the travese for the rest of sub-string (from the lenght of previous edge)
                 return self.traverse(child, sub_string[end - start + 1:])
             else:
                 # At this level there were no edge that sub-string starts with its leading character.
                 return -1
-        self.latest_index = start - len(self.sub_string) + len(sub_string)
-        if self.find_all:
-            return self.find_all_match(node, sub_string)
-        return self.latest_index
+        if self.findall:
+            return self.find_all_match(node, len(sub_string))
+        return node.start - (self.sub_length - len(sub_string))
 
     def check(self):
         if self.root is None:
@@ -48,24 +47,21 @@ class CheckSubString(Base):
             # Every string starts with an empty string
             return 0
 
-        item = next(((char, child) for char, child in self.root.children.items() if self.sub_string.startswith(char)), None)
-        if item:
-            _, child = item
-            start, end = child.start, child.end
-            self.frist_start = start
-            return self.traverse(child, self.sub_string[end - start + 1:])
-        else:
-            return -1
+        return self.traverse(self.root, self.sub_string)
 
-    def find_all_match(self, node, sub_string):
+    def find_all_match(self, node, sub_length):
 
-        def inner(bode, sub_string):
+        def inner(node, traversed_edges):
             for char, child in node.children.items():
-                if node.leaf:
-                    yield child.start - len(self.sub_string) + len(sub_string)
+                if child.leaf:
+                    yield child.start - traversed_edges
                 else:
-                    start, end = node.start, node.end
-                    yield from inner(child, sub_string[end - start + 1:])
+                    start, end = child.start, child.end
+                    sub_length = end - start + 1
+                    yield from inner(child, traversed_edges + sub_length)
 
-        first = node.start - len(self.sub_string) + len(sub_string)
-        return first, *inner(node, sub_string)
+        if node.leaf:
+            first = node.start - (self.sub_length - sub_length)
+            return [first, *inner(node, self.sub_length)]
+        else:
+            return list(inner(node, self.sub_length))

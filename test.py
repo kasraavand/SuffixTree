@@ -4,8 +4,8 @@ from SuffixTree.modules import CheckSubString
 s = "abcabxabcd$"
 tree = SuffixTree(s)
 tree.build_suffix_tree()
-a = CheckSubString(tree, 'abc', find_all=True)
-print(list(a.check()))
+a = CheckSubString(tree, 'abx', findall=True)
+print(a.check())
 
 # tree.print_dfs()
 
