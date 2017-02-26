@@ -6,6 +6,7 @@ This module is an optimized implementation of Ukkonen's suffix tree algorithm in
 ### Search for strings:
   `✓` Check if a string ***P*** of length ***m*** is a substring in ***O(m)*** time.  
   `✓` Find the first occurrence of the patterns ***P1,... ,Pq*** of total length ***m*** as substrings in ***O(m)*** time.
+  
   `✓` Find all ***z*** occurrences of the patterns ***P1,... ,Pq*** of total length ***m*** as substrings in ***O(m+z)*** time.
   - Search for a regular expression P in time expected sublinear in ***n***
   - Find for each suffix of a pattern ***P*** the length of the longest match between a prefix of ***P[i... m]*** and a substring in ***D*** in ![image](https://cloud.githubusercontent.com/assets/5694520/22856327/5881bd04-f0a4-11e6-9d9a-e01fc0c15dd2.png) time. This is termed the matching statistics for ***P***
