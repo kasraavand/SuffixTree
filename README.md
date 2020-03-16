@@ -21,7 +21,7 @@ This module is an optimized implementation of Ukkonen's suffix tree algorithm in
   - Find the shortest substrings occurring only once in ![image](https://cloud.githubusercontent.com/assets/5694520/22856287/8bdbe630-f0a3-11e6-8611-de6c0a40932c.png) time.
   - Find, for each ***i*** the shortest substrings of ***Si*** not occurring elsewhere in ***D*** in ![image](https://cloud.githubusercontent.com/assets/5694520/22856287/8bdbe630-f0a3-11e6-8611-de6c0a40932c.png) time.
 
-## Sourses:
+## sources:
 
   - http://web.stanford.edu/~mjkay/gusfield.pdf
   - On–line construction of suffix trees. Esko Ukkonen
