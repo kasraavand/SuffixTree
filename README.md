@@ -1,6 +1,6 @@
 ## Preamble
 
-This module is an optimized implementation of Ukkonen's suffix tree algorithm in python. In a near future it's going to have the most important text processing functionalities like:
+This module is an optimized implementation of Ukkonen's suffix tree algorithm in python which **will** be having most of the important text processing functionalities such :
 
 
 ### Search for strings:
